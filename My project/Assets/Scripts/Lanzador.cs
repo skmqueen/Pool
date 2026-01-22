@@ -4,24 +4,13 @@ using UnityEngine.InputSystem;
 public class Lanzador : MonoBehaviour
 {
     private Tablet controles;
-    private GameObject tiro;
-    private float alcance = 100f;
+
     public float fuerzaDisparo = 100f;
-    public GameObject pelota;
-    public float tiempoTranscurrido; 
-    public float tiempoPelota = 10f;
+    public float distanciaRay = 100f;
+
     private void Awake()
     {
         controles = new Tablet();
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnEnable()
@@ -32,28 +21,32 @@ public class Lanzador : MonoBehaviour
 
     private void OnDisable()
     {
+        controles.ShootingAction.Disparar.performed -= JugadorDispara;
         controles.Disable();
-        controles.ShootingAction.Disparar.performed += JugadorDispara;
     }
 
-    void JugadorDispara(InputAction.CallbackContext context)
+    private void JugadorDispara(InputAction.CallbackContext context)
     {
-        
-        Vector2 positionClick = controles.ShootingAction.Posicion.ReadValue<Vector2>();
-        Debug.Log("pinga" + positionClick);
-        Vector3 puntoOrigen = Camera.main.ScreenToWorldPoint(positionClick);
-        Vector3 puntoDestino = Camera.main.ScreenToWorldPoint(new Vector3(positionClick.x, positionClick.y, alcance));
+        // Leer posición del toque/click
+        Vector2 posPantalla = controles.ShootingAction.Posicion.ReadValue<Vector2>();
+        Debug.Log("Click en pantalla: " + posPantalla);
 
-        Vector3 direccion = (puntoDestino - puntoOrigen).normalized;
+        // Crear un rayo desde la cámara hacia ese punto
+        Ray ray = Camera.main.ScreenPointToRay(posPantalla);
 
-        GameObject pelotaDisparo = EsferasPool.instance.PopObject();
+        Vector3 origen = ray.origin;
+        Vector3 direccion = ray.direction;
 
-        pelotaDisparo.transform.rotation = Quaternion.LookRotation(direccion);
-        pelotaDisparo.transform.position = puntoOrigen;
-        pelotaDisparo.GetComponent<Rigidbody>().AddForce(direccion * fuerzaDisparo, ForceMode.Impulse);
+        // Sacar esfera del pool
+        GameObject esfera = EsferasPool.instance.PopObject();
 
+        // Posicionar y orientar
+        esfera.transform.position = origen;
+        esfera.transform.rotation = Quaternion.LookRotation(direccion);
 
-
+        // Disparar
+        Rigidbody rb = esfera.GetComponent<Rigidbody>();
+        rb.AddForce(direccion * fuerzaDisparo, ForceMode.Impulse);
     }
- 
 }
+

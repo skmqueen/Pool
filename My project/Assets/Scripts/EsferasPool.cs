@@ -26,37 +26,29 @@ public class EsferasPool : MonoBehaviour
 
     public GameObject PopObject()
     {
-        GameObject objectToReturn = null;
-        if (pool.Count != 0)
+        GameObject obj;
+
+        if (pool.Count > 0)
         {
-            objectToReturn = pool.Pop();
+            obj = pool.Pop();
         }
         else
         {
-            objectToReturn = Instantiate(prefab);
-            objectToReturn.SetActive(false);
+            obj = Instantiate(prefab);
         }
 
-        return objectToReturn;
+        // Reiniciar estado
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        obj.SetActive(true);
+        return obj;
     }
 
     public void PushObject(GameObject obj)
     {
         obj.SetActive(false);
         pool.Push(obj);
-
-    }
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
