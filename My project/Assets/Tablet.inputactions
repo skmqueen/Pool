@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "name": "Tablet",
+    "maps": [
+        {
+            "name": "ShootingAction",
+            "id": "4e1332b9-3679-41a1-89ae-4164068cbb84",
+            "actions": [
+                {
+                    "name": "Disparar",
+                    "type": "Button",
+                    "id": "17ee917a-ef8b-4242-a29e-abd03abbc669",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Posicion",
+                    "type": "Value",
+                    "id": "3b8bcc29-b4e4-4aad-bf64-d88d395a8b58",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dbada05e-6c19-4ded-83c0-404bc192f561",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disparar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2d5bbb7-6e88-467c-8e90-4609af77c86f",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disparar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da9eb048-214b-424b-9a70-c1fa48661f4a",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Posicion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ce852ef-e0da-4bc6-92d8-19e4a59f9ab1",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Posicion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

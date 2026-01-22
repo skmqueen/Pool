@@ -19,9 +19,9 @@ public class Lata2 : MonoBehaviour
         if (tiempoLata >= tiempoLataActiva)
         {
             tiempoLata = 0f;
-            GameObject latoncia = CanPool.instance.PopObject();
+          GameObject latoncia = CanPool.instance.PopObject();
             latoncia.transform.position = Vector3.zero;
-            
+  
             latoncia.SetActive(false);
 
         }
