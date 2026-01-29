@@ -8,7 +8,7 @@ public class Lata2 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        Rigidbody rb = latoncia.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class Lata2 : MonoBehaviour
         if (tiempoLata >= tiempoLataActiva)
         {
             tiempoLata = 0f;
-          GameObject latoncia = CanPool.instance.PopObject();
+            EsferasPool.instance.PushObject(latoncia);
             latoncia.transform.position = Vector3.zero;
   
             latoncia.SetActive(false);

@@ -27,20 +27,16 @@ public class Lanzador : MonoBehaviour
 
     private void JugadorDispara(InputAction.CallbackContext context)
     {
-        // Leer posición del toque/click
+        // Leer posición del toque
         Vector2 posPantalla = controles.ShootingAction.Posicion.ReadValue<Vector2>();
-        Debug.Log("Click en pantalla: " + posPantalla);
-
-        // Crear un rayo desde la cámara hacia ese punto
+        Debug.Log("hola " + posPantalla);
         Ray ray = Camera.main.ScreenPointToRay(posPantalla);
 
         Vector3 origen = ray.origin;
         Vector3 direccion = ray.direction;
 
-        // Sacar esfera del pool
         GameObject esfera = EsferasPool.instance.PopObject();
 
-        // Posicionar y orientar
         esfera.transform.position = origen;
         esfera.transform.rotation = Quaternion.LookRotation(direccion);
 

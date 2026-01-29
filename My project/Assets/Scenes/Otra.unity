@@ -236,10 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f1a78b7c075f14c8da62a08f91fb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lanzador
-  fuerzaDisparo: 100
-  pelota: {fileID: 8121939481094028473, guid: 0b5182519c55df943814769f6b95ae53, type: 3}
-  tiempoTranscurrido: 0
-  tiempoPelota: 10
+  fuerzaDisparo: 20
+  distanciaRay: 100
 --- !u!1 &970930070
 GameObject:
   m_ObjectHideFlags: 0
